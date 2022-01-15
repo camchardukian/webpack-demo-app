@@ -5,11 +5,11 @@ const resultDiv = document.getElementById("result");
 const errorBox = document.getElementById("error");
 
 const parseInputs = (...input) => {
-  return input.map(str => parseInt(str));
+  return input.map((str) => parseInt(str));
 };
 
 const inputsAreValid = (...input) => {
-  return input.every(num => typeof num === "number" && !isNaN(num));
+  return input.every((num) => typeof num === "number" && !isNaN(num));
 };
 
 const handleAdditionError = (inputs, numbers) => {
