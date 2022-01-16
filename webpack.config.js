@@ -1,18 +1,25 @@
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
 module.exports = {
   mode: "development",
   entry: "./src/index.js",
   output: {
-    filename: "main.js",
+    filename: "main.[contenthash].js",
     path: path.resolve(__dirname, "dist"),
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./src/template.html",
+    }),
+  ],
   module: {
     rules: [
       {
         test: /\.scss$/,
         // The order of the array items below is important.
         // These loaders run in order from right-to-left ("sass-loader" runs first).
+        // The purpose of loaders is to preprocess files.
         use: ["style-loader", "css-loader", "sass-loader"],
       },
     ],
