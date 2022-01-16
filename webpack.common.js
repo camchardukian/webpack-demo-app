@@ -3,6 +3,9 @@ const path = require("path");
 
 module.exports = {
   entry: "./src/index.js",
+  output: {
+    assetModuleFilename: "images/[hash][ext][query]",
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/template.html",
@@ -16,6 +19,17 @@ module.exports = {
         // These loaders run in order from right-to-left ("sass-loader" runs first).
         // The purpose of loaders is to preprocess files.
         use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.html$/,
+        use: ["html-loader"],
+      },
+      {
+        test: /\.(jpe?g|png|gif)$/,
+        type: "asset/resource",
+        generator: {
+          filename: "img/[hash][ext]",
+        },
       },
     ],
   },
